@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<div  style="margin-top: 50px;">
+<form method="POST" action="">
+  {% csrf_token %}
+ 
+   {{form|crispy}}
+  
+   <input class="btn btn-info" type="submit" name="send_message">
+
+</form>
+<a href="{% url 'chatroom:room-home' %}">Back Home</a>
+
+
+{% for messages in message %}
+ 
+    <div class="card">
+      <div class="card-body">
+        {{messages.value}}
+        <small class="text-muted">{{messages.message_created_on}}</small>
+      </div>
+    </div>
+ 
+{% endfor %}
+</div>
+
+{% endblock %}
